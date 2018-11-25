@@ -1,0 +1,37 @@
+{% load staticfiles %}
+{% load cache %}
+{% cache 21600 header %}
+<div class="header_main">
+    <div class="header_top">
+    <a href="{{ '/' }}" class="logo_top_left">
+        <canvas id="canvas" width="175" height="280"></canvas>
+    </a>
+        <div class="header_right">
+            <ul class="menu_top">
+                {% for i in in_header %}
+                    <li>
+                        <a href="{% url 'cat' i.category_id %}" class="{{ i.class_in_header }}">
+                            {{ i.category_name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="header_bottom">
+        <ul class="menu_nav">
+            {% if pages %}
+                {% for p in pages %}
+                    {% if forloop.first %}
+                        <li class="menu_nav_first"><a class="menu_nav_a_first" href="{{ '/' }}">{{ p.title }}</a></li>
+                    {% else %}
+                        <li><a href="{{ p.get_url }}">{{ p.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p>Такой страницы не существует!</p>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endcache %}

@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+<title>{% block title %}{{ 'Результаты поиска' }}&nbsp;{{ q }}|&nbsp;{{ title_site }}{% endblock %}</title>
+<meta http-equiv="Keywords" content="{% block keywords %}{{ 'Результаты поиска' }}&nbsp;{{ q }}{% endblock %}" />
+<meta http-equiv="Description" content="{% block descriptioin %}{{ 'Результаты поиска' }}&nbsp;{{ q }}{% endblock %}" />
+{% block search %}
+<div id="block_category">
+{% if articles_search %}
+<h3 class="search_title">Результаты поиска "{{ q }}"</h3>
+{% for a in articles_search %}
+    {% if forloop.counter|add:"-1"|divisibleby:"2" %}
+        <div id="category_left">
+            <div id="cat_img_left">
+                {% if not a.image %}
+                    <img class="block_popular_img" src="{% static 'images/imgsite/no_image_povaryonok.png' %}" alt="category_img"/>
+                {% else %}
+                    <img src="{% thumbnail a.image 220x220 crop="center" %}" alt="category_img" />
+                {% endif %}
+            </div>
+            <img class="cat_border_left" src="{% static 'images/imgsite/category_block_border_right.png' %}" alt="category_block_border" />
+            <div id="cat_content_left">
+                <h3><a href="{% url 'article' a.article_id %}">{{ a.article_title }}</a></h3>
+                <p>{{ a.article_anons | truncatewords_html:30 }}</p>
+                <a href="{% url 'article' a.article_id %}" class="button_category">Читать всё</a>
+            </div>
+        </div>
+    {% else %}
+        <div id="category_right">
+            <div id="cat_img_right">
+                {% if not a.image %}
+                    <img class="block_popular_img" src="{% static 'images/imgsite/no_image_povaryonok.png' %}" alt="category_img"/>
+                {% else %}
+                    <img src="{% thumbnail a.image 220x220 crop="center" %}" alt="category_img" />
+                {% endif %}
+            </div>
+            <img class="cat_border_right" src="{% static 'images/imgsite/category_block_border_left.png' %}" alt="category_block_border" />
+            <div id="cat_content_right">
+                <h3><a href="{% url 'article' a.article_id %}">{{ a.article_title }}</a></h3>
+                <p>{{ a.article_anons | truncatewords_html:30 }}</p>
+                <a href="{% url 'article' a.article_id %}" class="button_category">Читать всё</a>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+{% else %}
+    <p>По заданным критериям поиска, материала нет!</p>
+{% endif %}
+{% endblock %}

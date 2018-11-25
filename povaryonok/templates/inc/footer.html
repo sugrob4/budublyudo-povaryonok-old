@@ -1,0 +1,38 @@
+{% load staticfiles %}
+{% load cache %}
+{% cache 21600 footer %}
+<div class="footer">
+    <div class="footer_main">
+        <div class="img_footer">
+           <p class="footer_img_logo">
+            <img src="{% static "images/imgsite/footer_img_logo.png" %}" alt="footer_img_logo" />
+           </p>
+           <p class="footer_img_logo_bottom">
+            <img src="{% static "images/imgsite/footer_img_logo_bottom.png" %}" alt="footer_img_logo_bottom" />
+           </p>
+        </div>
+        <div class="text_footer">
+            <p class="autor_text">Все права защищены. Полное или частичное копирование <br />материалов запрещено.
+                При согласованном использовании <br />материала, необходима ссылка на ресурс.</p>
+{% endcache %}
+            <div class="counter">
+                <!--LiveInternet counter--><script type="text/javascript"><!--
+                    document.write("<a href='//www.liveinternet.ru/click' "+
+                    "target=_blank><img src='//counter.yadro.ru/hit?t52.6;r"+
+                    escape(document.referrer)+((typeof(screen)=="undefined")?"":
+                    ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+                    screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+                    ";"+Math.random()+
+                    "' alt='' title='LiveInternet: показано число просмотров и"+ 
+                    " посетителей за 24 часа' "+
+                    "border='0' width='88' height='31'><\/a>")
+                //--></script><!--/LiveInternet-->
+            </div>
+{% cache 21600 development %}
+            <p class="development">Website Development &amp; Design<br />
+                by Aleksey Povar<br />
+                contact e-mail:  <span>alekseypovar@gmail.com</span></p>
+        </div>
+    </div>
+</div>
+{% endcache %}

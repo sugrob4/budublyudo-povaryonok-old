@@ -1,0 +1,76 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load cache %}
+{% cache 21600 categoryes %}
+<title>{% block title %}{{ cat_krohi.category_name }}&nbsp;|&nbsp;{{ title_site }}{% endblock %}</title>
+<meta http-equiv="Keywords" content="{% block keywords %}{{ cat_krohi.metakey }}{% endblock %}" />
+<meta http-equiv="Description" content="{% block descriptioin %}{{ cat_krohi.metadesc }}{% endblock %}" />
+{% block categories %}
+<p id="krohi">
+    <a href="{{ '/' }}">Главная</a>&nbsp;&gt;&gt;&gt;&nbsp;<span>{{ cat_krohi }}</span>
+</p>
+<div id="block_category">
+{% if articles %}
+{% for a in articles %}
+    {% if forloop.counter|add:"-1"|divisibleby:"2" %}
+        <div id="category_left">
+            <div id="cat_img_left" data-wow-delay="1s">
+                {% if not a.image %}
+                    <img class="block_popular_img" src="{% static 'images/imgsite/no_image_povaryonok.png' %}" alt="category_img"/>
+                {% else %}
+                    <img src="{% thumbnail a.image 220x220 crop="center" %}" alt="category_img" />
+                {% endif %}
+            </div>
+            <img class="cat_border_left" src="{% static 'images/imgsite/category_block_border_right.png' %}" alt="category_block_border" />
+            <div id="cat_content_left">
+                <h3><a href="{% url 'article' a.article_id %}">{{ a.article_title }}</a></h3>
+                {{ a.article_anons | truncatewords_html:30 }}
+                <a href="{% url 'article' a.article_id %}" class="button_category">Читать всё</a>
+            </div>
+        </div>
+    {% else %}
+        <div id="category_right">
+            <div id="cat_img_right" data-wow-delay="1s">
+                {% if not a.image %}
+                    <img class="block_popular_img" src="{% static 'images/imgsite/no_image_povaryonok.png' %}" alt="category_img"/>
+                {% else %}
+                    <img src="{% thumbnail a.image 220x220 crop="center" %}" alt="category_img" />
+                {% endif %}
+            </div>
+            <img class="cat_border_right" src="{% static 'images/imgsite/category_block_border_left.png' %}" alt="category_block_border" />
+            <div id="cat_content_right">
+                <h3><a href="{% url 'article' a.article_id %}">{{ a.article_title }}</a></h3>
+                {{ a.article_anons | truncatewords_html:30 }}
+                <a href="{% url 'article' a.article_id %}" class="button_category">Читать всё</a>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+<ul id="pagination">
+{% if articles.paginator.num_pages > 1 %}
+    {% if articles.has_previous %}
+        <li><a href="?page=1">В начало</a></li>
+        <li><a href="?page={{ articles.previous_page_number }}">&laquo;</a></li>
+    {% endif %}
+    {% for page in articles.paginator.page_range %}
+        {% if page == articles.number %}
+            <li class="current">{{ page }}</li>
+        {% else %}
+            <li><a href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if articles.has_next %}
+        <li><a href="?page={{ articles.next_page_number }}">&raquo;</a></li>
+        {% if articles.paginator.num_pages %}
+            <li><a href="?page={{ articles.paginator.num_pages }}">В конец</a></li>
+        {% endif %}
+    {% endif %}
+{% endif %}
+</ul>
+{% else %}
+    <p>Материалов по данной категории нет!</p>
+{% endif %}
+{% endblock %}
+{% endcache %}

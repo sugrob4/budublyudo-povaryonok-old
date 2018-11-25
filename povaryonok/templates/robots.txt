@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /uploads/
+User-agent: Yandex
+Disallow: /admin/
+Disallow: /uploads/
+Disallow: /js/
+Sitemap: http://povaryonok.com/sitemap.xml
+Host: povaryonok.com

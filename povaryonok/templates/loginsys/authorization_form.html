@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<form action="{% url 'login_user' %}" method="post" id="auth">
+{% csrf_token %}
+    <input type="text" name="username" class="login" id="username" placeholder="Ваш логин:" value=""/>
+    <br />
+    <input type="password" class="password" name="password" id="password"  placeholder="Ваш пароль:" value=""/>
+    <br />
+<p class="background_buttton">
+    <input type="submit" class="autorization_but" name="auth" value="Войти">
+</p>
+</form>
+

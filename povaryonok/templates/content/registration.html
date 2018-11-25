@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+<title>{% block title %}{{ 'Регистрация' }}&nbsp;|&nbsp;{{ title_site }}{% endblock %}</title>
+<meta http-equiv="Keywords" content="{% block keywords %}{{ 'Регистрация, зарегистрироваться' }}{% endblock %}" />
+<meta http-equiv="Description" content="{% block descriptioin %}{{ 'Зарегистрироваться на сайте povaryonnok.com' }}{% endblock %}" />
+{% block registration %}
+{% if reg %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            window.location = '#{{ reg }}'
+        });
+    </script>
+{% endif %}
+<a name="reg"></a>
+<div id="registration">
+    <div id="block_reg">
+        <h3>Регистрация</h3>
+{% include 'loginsys/regform.html' %}
+    </div>
+</div>
+{% endblock %}

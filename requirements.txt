@@ -1,0 +1,6 @@
+django
+mysqlclient
+mysql-connector-python
+Pillow
+easy-thumbnails
+django-ckeditor

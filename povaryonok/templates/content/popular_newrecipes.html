@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load master_tags %}
+{% load cache %}
+{% cache 21600 popularnewrecipes %}
+<title>{% block title %}{% get_page as page %}{{ page.title }}&nbsp;|&nbsp;{{ title_site }}{% endblock %}</title>
+<meta http-equiv="Keywords" content="{% block keywords %}{% get_page as page %}{{ page.metakey }}{% endblock %}" />
+<meta http-equiv="Description" content="{% block descriptioin %}{% get_page as page %}{{ page.metadesc }}{% endblock %}" />
+{% block popular_newrecipes %}
+<div class="popular">
+    <h3>Популярное</h3>
+{% if home_popular %}
+    {% for h in home_popular %}
+        <div class="block_popular">
+                <div class="content_popular">
+                    {% if not h.image %}
+                        <img class="block_popular_img" src="{% static 'images/imgsite/no_image_povaryonok.png' %}" alt="popular_img"/>
+                    {% else %}
+                        <img class="block_popular_img" src="{% thumbnail h.image 220x220 crop="center" %}" alt="popular_img"/>
+                    {% endif %}
+                    <h4><a href="{% url 'article' h.article_id %}">{{ h.article_title }}</a></h4>
+                    {{ h.article_anons|truncatewords_html:18 }}
+                    <div class="popular_button_div">
+                        <a href="{% url 'article' h.article_id %}" class="popular_button">Читать</a>
+                    </div>
+                </div>
+            <img class="popular_shadow" src="{% static 'images/imgsite/popular_shadow.png' %}" alt="popular_shadow" />
+        </div>
+    {% endfor %}
+{% endif %}
+</div>
+<div class="new_receptions">
+    <h3>Новые рецепты</h3>
+{% if recipe %}
+    {% for r in recipe %}
+        <div class="block_recept">
+            <div class="recept_img">
+                <a href="{% url 'article' r.article_id %}">
+                    {% if not r.image %}
+                        <img class="block_popular_img" src="{% static 'images/imgsite/no_image_povaryonok.png' %}" alt="popular_img"/>
+                    {% else %}
+                        <img src="{% thumbnail r.image 140x140 crop="center" %}" alt="Картинка рецепта" />
+                    {% endif %}
+                </a>
+            </div>
+            <h3>{{ r.article_title }}</h3>
+            {{ r.article_anons|truncatewords_html:15 }}
+            <a href="{% url 'article' r.article_id %}" class="read_more">Читать далее...</a>
+        </div>
+    {% endfor %}
+{% endif %}
+    <div class="but_new_rec">
+        <a href="{% url 'recipes' %}">Читать все рецепты</a>
+    </div>
+</div>
+{% endblock popular_newrecipes %}
+{% endcache %}

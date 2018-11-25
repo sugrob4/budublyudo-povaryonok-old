@@ -1,0 +1,64 @@
+{% load master_tags %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Aleksey Povar" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="Keywords" content="{% block keywords %}{% endblock %}" />
+    <meta http-equiv="Description" content="{% block descriptioin %}{% endblock %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/normalize.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" media="screen"/>
+    <script type="text/javascript" src="{% static "js/jquery-1.12.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/functions.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/validationEngine.jquery.css" %}"/>
+    <script type="text/javascript" src="{% static "js/jquery.validationEngine-ru.js" %}" charset="utf-8"></script>
+    <script type="text/javascript" src="{% static "js/jquery.validationEngine.js" %}" charset="utf-8"></script>
+    <link rel="shortcut icon" href="{%  static "images/imgsite/favicon.ico" %}">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script type="text/javascript" src="{% static "js/animation/createj.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/animation/logo_povar.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/animation/func_anime.js" %}"></script>
+    <link rel="meta" type="application/rdf+xml" title="Dublin" href="dublin.rdf" />
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="google-site-verification" content="7By9-T1wiyBWtPsu0BmqsDT1QDoryfjiySSSwApNk44" />
+    <meta name='yandex-verification' content='7edab5b835348260' />
+    <meta name='yandex-verification' content='4f75c908049696a7' />
+    <meta name="msvalidate.01" content="97E5742B20668B1C1204F235412E70AD" />
+    <meta name='wmail-verification' content='27696680095f47fb934a372ef914a812' />
+</head>
+<body onload="init();">
+<div class="karkas">
+{% autoescape off %}
+{# header #}
+{% header_obj %}
+{# header #}
+<div class="content_main">
+{# sidebar  #}
+{% side_menu %}
+{# sidebar  #}
+    <div class="content">
+        {% block popular_newrecipes %}{% endblock %}
+        {% block categories %}{% endblock %}
+        {% block recipes_page %}{% endblock %}
+        {% block contacts %}{% endblock %}
+        {% block sitemap %}{% endblock %}
+        {% block aboutsite %}{% endblock %}
+        {% block view_detailed  %}{% endblock %}
+        {% block comments %}{% endblock %}
+        {% block search %}{% endblock %}
+        {% block registration %}{% endblock %}
+    </div>
+</div>
+{# footer #}
+{% foot %}
+{# footer #}
+</div>
+{% endautoescape %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load master_tags %}
+{% load cache %}
+{% cache 21600 sitemap_cache %}
+<title>{% block title %}{% get_page as page %}{{ page.title }}&nbsp;|&nbsp;{{ title_site }}{% endblock %}</title>
+<meta http-equiv="Keywords" content="{% block keywords %}{% get_page as page %}{{ page.metakey }}{% endblock %}" />
+<meta http-equiv="Description" content="{% block descriptioin %}{% get_page as page %}{{ page.metadesc }}{% endblock %}" />
+{% block sitemap  %}
+<div id="sitemap">
+    <h2>Карта сайта</h2>
+    {% for p in pages %}
+        {% if p.slug == 'home' %}
+            <h3><a href="{{ '/' }}">{{ p.title }}</a></h3>
+        {% else %}
+            <h3><a href="{{ p.get_url }}">{{ p.title }}</a></h3>
+        {% endif %}
+    {% endfor %}
+    <ul id="name_category">
+    {% for c in cat %}
+        <li><a href="{% url 'cat' c.category_id %}">{{ c.category_name }}</a></li>
+        <ul id="name_recipe">
+        {% for a in c.articles_set.all %}
+            <li><a href="{% url 'article' a.article_id %}">{{ a.article_title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+{% endcache %}

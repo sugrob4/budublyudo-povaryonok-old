@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc= "http://purl.org/dc/elements/1.1/">
+<rdf:Description rdf:about="http://povaryonok.com/">
+<dc:contributor>Aleksey Povar</dc:contributor>
+<dc:date>2016-04-05</dc:date>
+<dc:description>Любите готовить? Хотите каждый день удивлять близких? А может вам нужно приготовить изумительный банкетный стол? Если да, то вы попали по адресу. Povaryonok – место, где вы сможете найти прекрасные рецепты на любой вкус. Закончились идеи? Не беда. Тщательно отобранные мясные, рыбные, кондитерские блюда, а также супы, соусы и салаты, которые придутся по вкусу даже самым привередливым гурманам. Благодаря нашим блюдам, ваш стол всегда будет неповторим. Найдут "своё" блюдо и приверженцы здорового питания, так как сайт регулярно наполняется низкокалорийными блюдами.
+Но рецепты – это еще не все. На povaryonok.com вы найдёте огромное количество полезной информации, которая пригодится как начинающим, так и опытным кулинарам. Не знаете, сколько жарятся различные виды мяса на сковороде или в духовке? Хотите научиться соблюдать необходимые пропорции без весов? Мы научим этому и многому другому.</dc:description>
+<dc:language>EN</dc:language>
+<dc:language>RU</dc:language>
+<dc:publisher>Aleksey Povar</dc:publisher>
+<dc:source>http://povaryonok.com/</dc:source>
+<dc:title>povaryonok</dc:title>
+<dc:creator>Aleksey Povar</dc:creator>
+<dc:subject>Еда, приготовить, как вкусно приготовить пищу, рецепты, разнообразие статей для приготовления блюд, полезные советы, как правильно приготовить, выбор рецептов</dc:subject>
+<dc:format>application, image, message, text</dc:format>
+<dc:identifier>povaryonok.com</dc:identifier>
+<dc:provenance>Aleksey Povar</dc:provenance>
+<dc:rightsHolder>Aleksey Povar</dc:rightsHolder>
+</rdf:Description>
+</rdf:RDF>

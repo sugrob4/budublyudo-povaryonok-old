@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load cache %}
+{% cache 21600 about %}
+<title>{% block title %}{{ about.title }}&nbsp;|&nbsp;{{ title_site }}{% endblock %}</title>
+<meta http-equiv="Keywords" content="{% block keywords %}{{ about.metakey }}{% endblock %}" />
+<meta http-equiv="Description" content="{% block descriptioin %}{{ about.metadesc }}{% endblock %}" />
+{% block aboutsite %}
+<div class="aboutsite">
+    <h3>Страница о сайте</h3>
+    {{ about.page_text }}
+</div>
+{% endblock %}
+{% endcache %}

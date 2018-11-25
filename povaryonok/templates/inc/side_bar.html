@@ -1,0 +1,43 @@
+{% load staticfiles %}
+{% load cache %}
+{% cache 21600 side_bar %}
+<div class="side_bar">
+        <div class="categories">
+            <h3>Рубрики</h3>
+            <ul class="cat_name">
+            {% for c in cat %}
+                <li>
+                    <a href="{% url 'cat' c.category_id %}">{{ c.category_name }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+{% endcache %}
+    <a name="ret"></a>
+    <div class="search">
+        <img src="{% static "images/imgsite/search_img.png" %}" alt="search_img" />
+        <h3>поиск по сайту</h3>
+        {% if "q1" in request.session %}
+            <p style="color: red;">Введите поисковый запрос.</p>
+        {% elif "q2" in request.session %}
+            <p style="color: red;">Введите не более 20 символов.</p>
+        {% else %}
+            <p>Введите слово или фразу :</p>
+        {% endif %}
+        <form action="{% url 'search' %}" method="get">
+            <input type="text" name="q" title="Введите слово или фразу" value="{{ q|default:'' }}" />
+            <input type="submit" value="Искать"/>
+        </form>
+    </div>
+    <div class="autorization">
+{% if request.user.is_authenticated %}
+    <div class="user_authenticate">
+         <a href="{% url 'logout_user' %}">Выйти {{ request.user }}</a>
+    </div>
+{% else %}
+    <h2 id="h2_auth">Авторизация:</h2>
+    {% include 'loginsys/authorization_form.html' %}
+    <p class="back_butt_a"><a href="{% url 'registration' %}" class="register">Регистрация</a></p>
+{% endif %}
+    </div>
+</div>

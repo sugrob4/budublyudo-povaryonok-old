@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load master_tags %}
+<title>{% block title %}{% get_page as page %}{{ page.title }}&nbsp;|&nbsp;{{ title_site }}{% endblock %}</title>
+<meta http-equiv="Keywords" content="{% block keywords %}{% get_page as page %}{{ page.metakey }}{% endblock %}" />
+<meta http-equiv="Description" content="{% block descriptioin %}{% get_page as page %}{{ page.metadesc }}{% endblock %}" />
+{% block contacts %}
+<div class="contacts">
+    <h3>Форма обратной связи</h3>
+    <div class="contacts_image">
+        <img src="{% static 'images/imgsite/logo_top_left.png' %}">
+        {% if "send" in request.session %}
+            <p class="send_mail">Ваше письмо, отправленно успешно!</p>
+        {% else %}
+            <p>Письмо для администрации сайта можно послать здесь, заполнив форму ниже.</p>
+        {% endif %}
+    </div>
+    <div class="contacts_form">
+        <form id="formID" action="" method="post">
+        {% csrf_token %}
+            <fieldset>
+                {% if form.errors %}
+                    <p style="color: #ea2e1c;">
+                        Пожалуйста, исправьте ошибку {{ form.errors|pluralize }} ниже.
+                    </p>
+                {% endif %}
+                <label>
+                    <strong><br />{{ form.subject.errors }}</strong>
+                    <span>Тема сообщения:</span>
+                    {{ form.subject }}
+                </label>
+                <label>
+                    <strong><br />{{ form.email.errors }}</strong>
+                    <span>Введите email адрес:</span>
+                    {{ form.email }}
+                </label>
+                <label>
+                    <strong><br />{{ form.message.errors }}</strong>
+                    <span>Введите сообщение:</span>
+                    {{ form.message }}
+                </label>
+                {% if form.recaptcha.errors %}
+                    <div class="errmsg">
+                        {{ form.recaptcha.errors|join:", " }}
+                    </div>
+                {% endif %}
+                {{ form.recaptcha }}
+                <input type="submit" id="sub_but" class="sub_but" value="Отправить" />
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}
