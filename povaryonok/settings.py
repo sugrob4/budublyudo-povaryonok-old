@@ -10,7 +10,7 @@ IMAGE_UPLOAD_DIR = "img"
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x2on7gi8y(tlv9ng&gj##-k=1^d=u602$sl-h#yp5%d6ws0+@6'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -91,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'povaryonok',
-        'USER': 'root',
-        'PASSWORD': 'FNowuKFwM9jC',
+        'USER': '',
+        'PASSWORD': '',
     }
 }
 
@@ -163,8 +163,8 @@ CKEDITOR_CONFIGS = {
 }
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 
-RECAPTCHA_PUBLIC_KEY = '6LcDBRkTAAAAABZF3l43ylvLl7_HWF9BL9BqFKi8'
-RECAPTCHA_PRIVATE_KEY = '6LcDBRkTAAAAABAdh6QqJp7CN09TRK4GYbx-m__p'
+RECAPTCHA_PUBLIC_KEY = ''
+RECAPTCHA_PRIVATE_KEY = ''
 
 LOGGING = {
     'version': 1,
